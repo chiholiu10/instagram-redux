@@ -10,7 +10,7 @@ import { createStore, applyMiddleware } from 'redux';
 export const store = createStore(
     getData,
     applyMiddleware(thunk)
-)
+);
 
 const Instagram = () => (
     <Provider store={store}>

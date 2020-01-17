@@ -1,19 +1,15 @@
-const initalState = {
+import { types } from '../actions/index';
+
+const initialState = {
     imageData: [],
     isLoading: false,
     isError: false,
-    errorMsg: ""
+    errorMsg: "",
+    toggle: false
 };
 
-const imageData = (state = initalState, action) => {
+export const getImageData = (state = initialState, action) => {
     switch (action.type) {
-        case "REQUEST_IMAGES_DATA":
-            return {
-                ...state,
-                isLoading: true,
-                isError: false,
-                errorMsg: ""
-            };
         case "RECEIVE_IMAGES_DATA":
             return {
                 ...state,
@@ -22,9 +18,30 @@ const imageData = (state = initalState, action) => {
                 isError: action.isError,
                 errorMsg: action.errorMsg
             };
+            case "REQUEST_IMAGES_DATA":
+                return {
+                    ...state,
+                    isLoading: true,
+                    isError: false,
+                    errorMsg: "",
+                    toggle: false
+                };
+            case types.TOGGLE_LIKE: {
+                state.imageData.map((item) => {
+                    console.log(action.id, item.id)
+                    if(action.id === item.id) {
+                        return {
+                            ...state,
+                            toggle: true
+                        }
+                    }
+                    console.log(item);
+                });
+                
+            }
         default:
             return state;
     }
 }
 
-export default imageData;
+export default getImageData;

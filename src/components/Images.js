@@ -2,10 +2,11 @@ import React, { useEffect} from 'react';
 import { useDispatch } from 'react-redux';
 import { requestData } from '../components/GetData';
 import { connect } from 'react-redux';
+import { likePhoto } from '../actions/index';
 
-const Images = ({ images }) => {
+const Images = ({ images, likePhoto }) => {
+    console.log(images);
     const url = 'https://jsonplaceholder.typicode.com/photos';
-    
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -13,13 +14,13 @@ const Images = ({ images }) => {
     }, [dispatch]); 
 
     const getImages = images.imageData.map((image) => {
-        console.log(image);
         return (
-            <div>
+            <div key={image.id} className={image.toggle}>
                 <img alt={image.title} src={image.url}/>
+                <div onClick={() => likePhoto(image.id)}>Like</div>
             </div>
         )
-    })
+    });
 
     return (
         <div>
@@ -28,12 +29,12 @@ const Images = ({ images }) => {
     )
 }
 
-const mapStateToProps = state => {
+const mapDispatchToProps = dispatch => ({
+    likePhoto: id => dispatch(likePhoto(id))
+});
 
-    return {
-        images: state.imageData
-    }
-  
-}
+const mapStateToProps = state => ({
+    images: state.imageData
+})
 
-export default connect(mapStateToProps, null)(Images);
+export default connect(mapStateToProps, mapDispatchToProps)(Images);

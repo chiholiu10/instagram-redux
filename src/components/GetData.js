@@ -1,6 +1,6 @@
 import { createStore, applyMiddleware } from "redux";
 import thunkMiddleware from "redux-thunk";
-import imageData from '../reducers/getData';
+import getImageData from '../reducers/getData';
 import axios from "axios";
   
 export const requestData = url => async dispatch => {
@@ -13,16 +13,18 @@ export const requestData = url => async dispatch => {
         type: "RECEIVE_IMAGES_DATA",
         imageData: json.data,
         isError: false,
-        errorMsg: ""
+        errorMsg: "",
+        toggle: false
       });
     } catch (e) {
       dispatch({
         type: "RECEIVE_IMAGES_DATA",
         imageData: [],
         isError: true,
-        errorMsg: e
+        errorMsg: e,
+        toggle: false
       });
     }
 };
 
-export const store = createStore(imageData, applyMiddleware(thunkMiddleware));
+export const store = createStore(getImageData, applyMiddleware(thunkMiddleware));
