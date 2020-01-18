@@ -18,27 +18,22 @@ export const getImageData = (state = initialState, action) => {
                 isError: action.isError,
                 errorMsg: action.errorMsg
             };
-            case "REQUEST_IMAGES_DATA":
-                return {
-                    ...state,
-                    isLoading: true,
-                    isError: false,
-                    errorMsg: "",
-                    toggle: false
-                };
-            case types.TOGGLE_LIKE: {
-                state.imageData.map((item) => {
-                    console.log(action.id, item.id)
-                    if(action.id === item.id) {
-                        return {
-                            ...state,
-                            toggle: true
-                        }
-                    }
-                    console.log(item);
-                });
-                
-            }
+        case "REQUEST_IMAGES_DATA":
+            return {
+                ...state,
+                isLoading: true,
+                isError: false,
+                errorMsg: "",
+                toggle: false
+            };
+        case types.TOGGLE_LIKE: {
+            return {
+                ...state,
+                imageData: state.imageData.map(image => image.id === action.id ?
+                    { ...image, toggle: image.toggle } : image
+                ) 
+            };
+        }
         default:
             return state;
     }

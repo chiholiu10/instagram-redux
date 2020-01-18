@@ -11,18 +11,21 @@ export const requestData = url => async dispatch => {
       const json = await axios.get(url);
       dispatch({
         type: "RECEIVE_IMAGES_DATA",
-        imageData: json.data,
+        imageData: json.data.map((item) => {
+          return {
+            ...item, 
+            toggle: false
+          }
+        }),
         isError: false,
-        errorMsg: "",
-        toggle: false
+        errorMsg: ""
       });
     } catch (e) {
       dispatch({
         type: "RECEIVE_IMAGES_DATA",
         imageData: [],
         isError: true,
-        errorMsg: e,
-        toggle: false
+        errorMsg: e
       });
     }
 };

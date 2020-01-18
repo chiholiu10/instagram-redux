@@ -15,7 +15,7 @@ const Images = ({ images, likePhoto }) => {
 
     const getImages = images.imageData.map((image) => {
         return (
-            <div key={image.id} className={image.toggle}>
+            <div key={image.id} className={image.toggle ? 'toggle_default' : 'toggle_like'}>
                 <img alt={image.title} src={image.url}/>
                 <div onClick={() => likePhoto(image.id)}>Like</div>
             </div>
