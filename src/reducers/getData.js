@@ -23,16 +23,26 @@ export const getImageData = (state = initialState, action) => {
                 ...state,
                 isLoading: true,
                 isError: false,
-                errorMsg: "",
-                toggle: false
+                errorMsg: ""
             };
         case types.TOGGLE_LIKE: {
             return {
                 ...state,
                 imageData: state.imageData.map(image => image.id === action.id ?
-                    { ...image, toggle: image.toggle } : image
+                    { 
+                        ...image, toggle: !image.toggle } : image
                 ) 
             };
+        }
+        case types.ADD_COMMENT: {
+            return {
+                ...state,
+                imageData: state.imageData.map(text => text.id === action.id ?
+                    {
+                        ...text, message: [...state.message, action.newComment] } : text
+                ) 
+
+            }
         }
         default:
             return state;

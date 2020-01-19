@@ -14,7 +14,8 @@ export const requestData = url => async dispatch => {
         imageData: json.data.map((item) => {
           return {
             ...item, 
-            toggle: false
+            toggle: false,
+            comments: []
           }
         }),
         isError: false,

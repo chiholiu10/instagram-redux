@@ -10,9 +10,11 @@ export const likePhoto = (id) => ({
     id
 })
 
-export const commentPhoto = () => {
-    
-}
+export const commentPhoto = (id, newComment) => ({
+    type: types.TOGGLE_LIKE,
+    id,
+    newComment
+})
 
 export const editCommentPhoto = () => {
     
