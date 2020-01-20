@@ -1,5 +1,6 @@
 export const types = {
-    TOGGLE_LIKE: 'TOGGLE_LIKE'
+    TOGGLE_LIKE: 'TOGGLE_LIKE',
+    ADD_COMMENT: 'ADD_COMMENT'
 }
 
 export const addPhoto = () => {
@@ -11,7 +12,7 @@ export const likePhoto = (id) => ({
 })
 
 export const commentPhoto = (id, newComment) => ({
-    type: types.TOGGLE_LIKE,
+    type: types.ADD_COMMENT,
     id,
     newComment
 })

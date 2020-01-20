@@ -2,7 +2,10 @@ import React, { useEffect} from 'react';
 import { useDispatch } from 'react-redux';
 import { requestData } from '../components/GetData';
 import { connect } from 'react-redux';
-import { likePhoto} from '../actions/index';
+import { likePhoto, commentPhoto } from '../actions/index';
+import InfiniteScroll from "react-infinite-scroll-component";
+
+
 
 const Images = ({ images, likePhoto }) => {
     console.log(images);
@@ -13,19 +16,24 @@ const Images = ({ images, likePhoto }) => {
         dispatch(requestData(url));
     }, [dispatch]); 
 
-    // const submitComment = (event) => {
-    //     event.preventDefault();
-    //     let input = this.refs.input;
-    //     if(!input.value.trim()) {
-    //         return;
-    //     }
-    //     dispatch(input.value);
-    //     input.value = "";
+    const handleCommentChange = (id, event) => {
+        event.preventDefault();
+        console.log(id, event.target.value);
+        dispatch(commentPhoto(id, event.target.value));
+    }
 
+    // const handleSubmit = () => {
+    //     dispatch(commentPhoto(id, event.target.value));
     // }
 
     const getImages = images.imageData.map((image) => {
+  
         return (
+            <InfiniteScroll
+            dataLength={images.imageData.length}
+            hasMore={true}
+            loader={<h4>Loading...</h4>}
+          >
             <div key={image.id} >
                 <img alt={image.title} src={image.url}/>
 
@@ -33,16 +41,12 @@ const Images = ({ images, likePhoto }) => {
                     <i className={image.toggle ? 'press' : ''} ></i>
                     <span className={image.toggle ? 'press' : ''} >liked!</span>
                 </div>
-
-                {/* <form onSubmit={submitComment}>
-                    <input ref="input"/>
-                    <button type="submit">
-                        POST
-                    </button>
-                </form> */}
-               
+                <input type="text" onChange={(event) => handleCommentChange(image.id, event)}/>
+                {/* <button type="submit" onClick={handleSubmit}>Post</button> */}
             </div>
+            </InfiniteScroll>
         )
+    
     });
 
     return (
@@ -54,7 +58,7 @@ const Images = ({ images, likePhoto }) => {
 
 const mapDispatchToProps = dispatch => ({
     likePhoto: id => dispatch(likePhoto(id)),
-    // addTodo: text => dispatch(commentPhoto(text))
+    commentPhoto: (id, text) => dispatch(commentPhoto(id, text))
 });
 
 const mapStateToProps = state => ({

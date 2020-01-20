@@ -35,13 +35,15 @@ export const getImageData = (state = initialState, action) => {
             };
         }
         case types.ADD_COMMENT: {
+
             return {
                 ...state,
                 imageData: state.imageData.map(text => text.id === action.id ?
-                    {
-                        ...text, message: [...state.message, action.newComment] } : text
+                    {   
+                        ...text, 
+                        comments: action.newComment 
+                    } : text
                 ) 
-
             }
         }
         default:
