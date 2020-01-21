@@ -3,13 +3,12 @@ import { useDispatch } from 'react-redux';
 import { requestData } from '../components/GetData';
 import { connect } from 'react-redux';
 import { likePhoto, commentPhoto } from '../actions/index';
-import InfiniteScroll from "react-infinite-scroll-component";
-
-
+import { InfiniteScroll } from 'react-simple-infinite-scroll'
 
 const Images = ({ images, likePhoto }) => {
     console.log(images);
     const url = 'https://jsonplaceholder.typicode.com/photos';
+    // const url = 'https://api.myjson.com/bins/mofjy';
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -30,10 +29,9 @@ const Images = ({ images, likePhoto }) => {
   
         return (
             <InfiniteScroll
-            dataLength={images.imageData.length}
-            hasMore={true}
-            loader={<h4>Loading...</h4>}
-          >
+          throttle={10}
+          threshold={100}
+        >
             <div key={image.id} >
                 <img alt={image.title} src={image.url}/>
 
