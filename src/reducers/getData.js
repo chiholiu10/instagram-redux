@@ -5,7 +5,8 @@ const initialState = {
     isLoading: false,
     isError: false,
     errorMsg: "",
-    toggle: false
+    toggle: false,
+    comments:[]
 };
 
 export const getImageData = (state = initialState, action) => {
@@ -25,7 +26,7 @@ export const getImageData = (state = initialState, action) => {
                 isError: false,
                 errorMsg: ""
             };
-        case types.TOGGLE_LIKE: {
+        case types.TOGGLE_LIKE_IMAGE: {
             return {
                 ...state,
                 imageData: state.imageData.map(image => image.id === action.id ?
@@ -35,17 +36,17 @@ export const getImageData = (state = initialState, action) => {
             };
         }
         case types.ADD_COMMENT: {
-
             return {
                 ...state,
                 imageData: state.imageData.map(text => text.id === action.id ?
                     {   
                         ...text, 
-                        comments: action.newComment 
+                        comments: [...text.comments, { comment: action.newComment, toggle: text.toggle } ]
                     } : text
                 ) 
             }
         }
+
         default:
             return state;
     }
