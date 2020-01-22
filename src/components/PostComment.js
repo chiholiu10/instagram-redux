@@ -2,24 +2,25 @@ import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { commentPhoto } from '../actions/index';
 
-const PostComment = ({ id, commentPhoto }) => {
-    const [idImage, setIdImage] = useState('');
-    const [comment, setComment] = useState('');
-    
+const PostComment = ({ id, commentPhoto}) => {
+    const [commentValue, setCommentValue] = useState('');
+    const [idValue, setIdValue] = useState('');
+
     const handleCommentChange = (id, event) => {
         event.preventDefault();
-        setIdImage(id);
-        setComment(event.target.value);
+        setIdValue(id);
+        setCommentValue(event.target.value)
     }
-    
+
     const handleSubmit = () => {
-        commentPhoto(idImage, comment);
-        setComment('');
+        commentPhoto(idValue, commentValue);
+        setCommentValue('');
+        setIdValue('');
     }
 
     return (
         <div>
-            <input type="text" value={comment} onChange={(event) => handleCommentChange(id, event)}/>
+            <input type="text" value={commentValue} onChange={(event) => handleCommentChange(id, event)}/>
             <button type="submit" onClick={handleSubmit}>Post</button>
         </div>
     )

@@ -5,7 +5,8 @@ const initialState = {
     isLoading: false,
     isError: false,
     errorMsg: "",
-    toggle: false
+    toggle: false,
+    comments:[]
 };
 
 export const getImageData = (state = initialState, action) => {
@@ -52,18 +53,19 @@ export const getImageData = (state = initialState, action) => {
             console.log('like comment');
             return {
                 ...state,
-                imageData: state.imageData.map(text => text.id === action.generalIndex ?
+                imageData: state.imageData.map(text => text.id === action.id?
                     {   
                         ...text, 
                         comments: {
                             [action.commentIndex]: {
-                                toggle: state.toggle
+                                toggle: !state.toggle
                             }
                         }
                     } : text
                 ) 
             }
         }
+
         default:
             return state;
     }
