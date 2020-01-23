@@ -7,9 +7,9 @@ export const types = {
 export const addPhoto = () => {
 }
 
-export const likePhoto = (id) => ({
+export const likePhoto = (index) => ({
     type: types.TOGGLE_LIKE_PHOTO,
-    id
+    index
 });
 
 export const commentPhoto = (id, newComment) => ({
@@ -18,9 +18,9 @@ export const commentPhoto = (id, newComment) => ({
     newComment
 });
 
-export const likeComment = (id, commentIndex) => ({
+export const likeComment = (generalIndex, commentIndex) => ({
     type: types.TOGGLE_LIKE_COMMENT,
-    id,
+    generalIndex,
     commentIndex
 });
 

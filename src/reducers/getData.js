@@ -31,7 +31,7 @@ export const getImageData = (state = initialState, action) => {
             console.log('toggle like photo');
             return {
                 ...state,
-                imageData: state.imageData.map(image => image.id === action.id ?
+                imageData: state.imageData.map((image, index) => index === action.index ?
                     { 
                         ...image, toggle: !image.toggle } : image
                 ) 
@@ -51,18 +51,19 @@ export const getImageData = (state = initialState, action) => {
         }
 
         case types.TOGGLE_LIKE_COMMENT: {
-            console.log(state.imageData[action.commentIndex].comments[action.commentIndex].toggle)
+            console.log(state.imageData[action.generalIndex].comments[action.commentIndex].toggle)
             return {
                 ...state,
-                imageData: state.imageData.map(comment => comment.id === action.commentIndex?
+                imageData: state.imageData.map((text, index) => index === action.generalIndex ?
                     {   
-                        ...comment, 
-                        comments: {
-                            [action.commentIndex]: {
-                                toggle: !comment.likeComment
-                            }
-                        }
-                    } : comment
+                        ...text, 
+                        comments: state.comments.map((newComment, index) => index === action.commentIndex ?
+                        {   
+                            ...newComment, 
+                                toggle: !newComment.likeComment
+                        } : newComment
+                    ) 
+                    } : text
                 ) 
             }
         }

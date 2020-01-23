@@ -3,12 +3,11 @@ import { connect } from 'react-redux';
 import { likeComment } from '../actions/index';
 import { useDispatch } from 'react-redux';
 
-const CommentSection = ({ id, comments }) => {
-
+const CommentSection = ({ index, comments }) => {
     const dispatch = useDispatch();
-    const checkLikeComment = (index, commentIndex) => {
-        console.log(index, commentIndex);
-        dispatch(likeComment(index, commentIndex));
+    const checkLikeComment = (generalIndex, nestedCommentIndex) => {
+        console.log(generalIndex, nestedCommentIndex);
+        dispatch(likeComment(generalIndex, nestedCommentIndex));
     }
     const currentComments = comments.map((image, i) => {
         console.log(image)
@@ -18,10 +17,9 @@ const CommentSection = ({ id, comments }) => {
                     {image.comments}
                 </div>
 
-                 <div className="like-button" onClick={() => checkLikeComment(id, i)}>
-                    <i className={image.toggle ? 'press' : ''} ></i>
-                    <span className={image.toggle ? 'press' : ''} ></span>
-                    {image.toggle}
+                <div className="like-button" onClick={() => checkLikeComment(index, i)}>
+                    <i className={image.toggle ? 'press' : 'unpress'} ></i>
+                    <span className={image.toggle ? 'press' : 'unpress'} ></span>
                 </div>
             </div>
         )

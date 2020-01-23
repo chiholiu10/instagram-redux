@@ -8,7 +8,6 @@ import PostComment from '../components/PostComment';
 import CommentSection from '../components/CommentSection';
 
 const Images = ({ images, likePhoto }) => {
-    console.log(images);
     // const url = 'https://jsonplaceholder.typicode.com/photos';
     const url = 'https://api.myjson.com/bins/mofjy';
     const dispatch = useDispatch();
@@ -17,7 +16,7 @@ const Images = ({ images, likePhoto }) => {
         dispatch(requestData(url));
     }, [dispatch]); 
 
-    const getImages = images.imageData.map((image) => {
+    const getImages = images.imageData.map((image, index) => {
         return (
             <InfiniteScroll
           throttle={100}
@@ -26,12 +25,12 @@ const Images = ({ images, likePhoto }) => {
             <div key={image.id} >
                 <img alt={image.title} src={image.url}/>
 
-                <div className="like-button" onClick={() => likePhoto(image.id)}>
+                <div className="like-button" onClick={() => likePhoto(index)}>
                     <i className={image.toggle ? 'press' : ''} ></i>
                     <span className={image.toggle ? 'press' : ''} >liked!</span>
                 </div>
                     
-                <CommentSection comments={image.comments} id={image.id} /> 
+                <CommentSection id={image.id} comments={image.comments} index={index} /> 
                 <PostComment id={image.id}/>
             </div>
             </InfiniteScroll>
