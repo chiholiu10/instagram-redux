@@ -41,7 +41,10 @@ export const getImageData = (state = initialState, action) => {
                 imageData: state.imageData.map(text => text.id === action.id ?
                     {   
                         ...text, 
-                        comments: [...text.comments, { comment: action.newComment, toggle: text.toggle } ]
+                        comments: {...text.comments, 
+                                    comment: action.newComment, 
+                                    toggle: text.toggle
+                                },
                     } : text
                 ) 
             }

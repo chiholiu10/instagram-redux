@@ -1,5 +1,5 @@
 export const types = {
-    TOGGLE_LIKE: 'TOGGLE_LIKE',
+    TOGGLE_LIKE_IMAGE: 'TOGGLE_LIKE_IMAGE',
     ADD_COMMENT: 'ADD_COMMENT'
 }
 

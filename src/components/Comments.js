@@ -1,16 +1,17 @@
 import React from 'react';
 // import { useDispatch } from 'react-redux';
 import { connect } from 'react-redux';
-import { commentPhoto } from '../actions/index';
+// import { commentPhoto } from '../actions/index';
 
 const Comments = ({ images }) => {
-    console.log(images.imageData);
-    const listComments = images.imageData.map((comments, i) => {
+    console.log(images);
+    const listComments = images.imageData.map((image, i) => {
         return (
-    <div>{comments.comments}{comments.toggle}
-    </div>
+            <div key={i}>
+                {image.comments}
+            </div>
         )
-    })
+    });
 
     return (
         <div>
@@ -20,7 +21,7 @@ const Comments = ({ images }) => {
 }
 
 const mapDispatchToProps = dispatch => ({
-    commentPhoto: (id, text) => dispatch(commentPhoto(id, text))
+    // commentPhoto: (id, text) => dispatch(commentPhoto(id, text))
 });
 
 const mapStateToProps = state => ({

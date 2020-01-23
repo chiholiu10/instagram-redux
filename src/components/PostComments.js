@@ -15,7 +15,6 @@ const PostComments = ({ id, commentPhoto}) => {
     }
 
     const handleSubmit = () => {
-        console.log(idValue, commentValue)
         dispatch(commentPhoto(idValue, commentValue));
         setCommentValue('');
         setIdValue('');
