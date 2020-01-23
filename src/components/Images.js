@@ -2,10 +2,10 @@ import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { requestData } from '../components/GetData';
 import { connect } from 'react-redux';
-import { likePhoto, commentPhoto } from '../actions/index';
+import { likePhoto } from '../actions/index';
 import { InfiniteScroll } from 'react-simple-infinite-scroll';
-import Comments from '../components/Comments';
-import PostComments from '../components/PostComments';
+import PostComment from '../components/PostComment';
+import CommentSection from '../components/CommentSection';
 
 const Images = ({ images, likePhoto }) => {
     console.log(images);
@@ -18,12 +18,11 @@ const Images = ({ images, likePhoto }) => {
     }, [dispatch]); 
 
     const getImages = images.imageData.map((image) => {
-  
         return (
             <InfiniteScroll
-                throttle={80}
-                threshold={100}
-            >
+          throttle={100}
+          threshold={100}
+        >
             <div key={image.id} >
                 <img alt={image.title} src={image.url}/>
 
@@ -31,9 +30,9 @@ const Images = ({ images, likePhoto }) => {
                     <i className={image.toggle ? 'press' : ''} ></i>
                     <span className={image.toggle ? 'press' : ''} >liked!</span>
                 </div>
-                
-                <Comments/>
-                <PostComments id={image.id}/>
+
+                <CommentSection comments={image.comments} id={image.id} /> 
+                <PostComment id={image.id}/>
             </div>
             </InfiniteScroll>
         )
@@ -48,8 +47,7 @@ const Images = ({ images, likePhoto }) => {
 }
 
 const mapDispatchToProps = dispatch => ({
-    likePhoto: id => dispatch(likePhoto(id)),
-    commentPhoto: (id, text) => dispatch(commentPhoto(id, text))
+    likePhoto: id => dispatch(likePhoto(id))
 });
 
 const mapStateToProps = state => ({
