@@ -6,7 +6,8 @@ const initialState = {
     isError: false,
     errorMsg: "",
     toggle: false,
-    comments:[]
+    comments:[],
+    likeComment: false
 };
 
 export const getImageData = (state = initialState, action) => {
@@ -43,12 +44,6 @@ export const getImageData = (state = initialState, action) => {
                 imageData: state.imageData.map(text => text.id === action.id ?
                     {   
                         ...text, 
-<<<<<<< HEAD
-                        comments: {...text.comments, 
-                                    comment: action.newComment, 
-                                    toggle: text.toggle
-                                },
-=======
                         comments: [...text.comments, {comments: action.newComment, toggle: text.toggle }]
                     } : text
                 ) 
@@ -56,19 +51,18 @@ export const getImageData = (state = initialState, action) => {
         }
 
         case types.TOGGLE_LIKE_COMMENT: {
-            console.log('like comment');
+            console.log(state.imageData[action.commentIndex].comments[action.commentIndex].toggle)
             return {
                 ...state,
-                imageData: state.imageData.map(text => text.id === action.id?
+                imageData: state.imageData.map(comment => comment.id === action.commentIndex?
                     {   
-                        ...text, 
+                        ...comment, 
                         comments: {
                             [action.commentIndex]: {
-                                toggle: !state.toggle
+                                toggle: !comment.likeComment
                             }
                         }
->>>>>>> da8228230b25a6b2bb4aa727e8b1852bad4a3d84
-                    } : text
+                    } : comment
                 ) 
             }
         }

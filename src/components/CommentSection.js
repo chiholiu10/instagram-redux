@@ -4,12 +4,14 @@ import { likeComment } from '../actions/index';
 import { useDispatch } from 'react-redux';
 
 const CommentSection = ({ id, comments }) => {
+
     const dispatch = useDispatch();
     const checkLikeComment = (index, commentIndex) => {
         console.log(index, commentIndex);
         dispatch(likeComment(index, commentIndex));
     }
     const currentComments = comments.map((image, i) => {
+        console.log(image)
         return (
             <div key={i}>
                 <div>
@@ -36,4 +38,4 @@ const mapStateToProps = state => ({
     images: state.imageData
 })
 
-export default connect(mapStateToProps, null)(CommentSection );
+export default connect(mapStateToProps, null)(CommentSection);

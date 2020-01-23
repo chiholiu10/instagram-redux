@@ -13,7 +13,7 @@ const PostComment = ({ id, commentPhoto}) => {
     }
 
     const handleSubmit = () => {
-        dispatch(commentPhoto(idValue, commentValue));
+        commentPhoto(idValue, commentValue);
         setCommentValue('');
         setIdValue('');
     }
@@ -32,6 +32,6 @@ const mapDispatchToProps = dispatch => ({
 
 const mapStateToProps = state => ({
     images: state.imageData
-})
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(PostComment);

@@ -30,7 +30,7 @@ const Images = ({ images, likePhoto }) => {
                     <i className={image.toggle ? 'press' : ''} ></i>
                     <span className={image.toggle ? 'press' : ''} >liked!</span>
                 </div>
-
+                    
                 <CommentSection comments={image.comments} id={image.id} /> 
                 <PostComment id={image.id}/>
             </div>
