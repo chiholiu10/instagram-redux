@@ -5,10 +5,12 @@ const initialState = {
     isLoading: false,
     isError: false,
     errorMsg: "",
-    toggle: false,
+    imageLike: false,
     comments:[],
     likeComment: false
 };
+
+let id = 0;
 
 export const getImageData = (state = initialState, action) => {
     switch (action.type) {
@@ -28,12 +30,11 @@ export const getImageData = (state = initialState, action) => {
                 errorMsg: ""
             };
         case types.TOGGLE_LIKE_PHOTO: {
-            console.log('toggle like photo');
             return {
                 ...state,
                 imageData: state.imageData.map((image, index) => index === action.index ?
                     { 
-                        ...image, toggle: !image.toggle } : image
+                        ...image, imageLike: !image.imageLike } : image
                 ) 
             };
         }
@@ -44,25 +45,24 @@ export const getImageData = (state = initialState, action) => {
                 imageData: state.imageData.map(text => text.id === action.id ?
                     {   
                         ...text, 
-                        comments: [...text.comments, {comments: action.newComment, toggle: text.toggle }]
+                        comments: [...text.comments, {comments: action.newComment, likeComment: text.toggle }]
                     } : text
                 ) 
             }
         }
 
         case types.TOGGLE_LIKE_COMMENT: {
-            console.log(state.imageData[action.generalIndex].comments[action.commentIndex].toggle)
             return {
                 ...state,
-                imageData: state.imageData.map((text, index) => index === action.generalIndex ?
+                imageData: state.imageData.map((text, index) => index == action.generalIndex ?
                     {   
                         ...text, 
-                        comments: state.comments.map((newComment, index) => index === action.commentIndex ?
+                        comments: text.comments.map((newComment, index) => index == action.commentIndex ?
                         {   
                             ...newComment, 
-                                toggle: !newComment.likeComment
-                        } : newComment
-                    ) 
+                                comments: newComment.comment,
+                                likeComment: !newComment.likeComment } : newComment
+                    )
                     } : text
                 ) 
             }

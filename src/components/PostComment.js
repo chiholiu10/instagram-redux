@@ -32,6 +32,6 @@ const mapDispatchToProps = dispatch => ({
 
 const mapStateToProps = state => ({
     images: state.imageData
-});
+})
 
 export default connect(mapStateToProps, mapDispatchToProps)(PostComment);

@@ -10,16 +10,15 @@ const CommentSection = ({ index, comments }) => {
         dispatch(likeComment(generalIndex, nestedCommentIndex));
     }
     const currentComments = comments.map((image, i) => {
-        console.log(image)
         return (
             <div key={i}>
                 <div>
-                    {image.comments}
+                    {image.comment}
                 </div>
 
                 <div className="like-button" onClick={() => checkLikeComment(index, i)}>
-                    <i className={image.toggle ? 'press' : 'unpress'} ></i>
-                    <span className={image.toggle ? 'press' : 'unpress'} ></span>
+                    <i className={image.likeComment ? 'press' : ''} ></i>
+                    <span className={image.likeComment ? 'press' : ''} ></span>
                 </div>
             </div>
         )
@@ -31,6 +30,10 @@ const CommentSection = ({ index, comments }) => {
         </div>
     )
 }
+
+// const mapDispatchToProps = dispatch => ({
+//     likeComment: (id, text) => dispatch(likeComment(id, text))
+// });
 
 const mapStateToProps = state => ({
     images: state.imageData
