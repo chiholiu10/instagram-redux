@@ -1,19 +1,37 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { connect } from 'react-redux';
-import { likeComment } from '../actions/index';
+import { likeComment, enableReply, replyComment, postReply } from '../actions/index';
 import { useDispatch } from 'react-redux';
 
 const CommentSection = ({ index, comments }) => {
+    const [replyComment, setReplyComment] = useState('');
     const dispatch = useDispatch();
+
     const checkLikeComment = (generalIndex, nestedCommentIndex) => {
         console.log(generalIndex, nestedCommentIndex);
         dispatch(likeComment(generalIndex, nestedCommentIndex));
     }
+
+    const enableReplyComment = (generalIndex, nestedCommentIndex) => {
+        console.log(generalIndex, nestedCommentIndex, enableReply);
+        dispatch(enableReply(generalIndex, nestedCommentIndex))
+    }
+
+    const getReplyComment = (getReply) => {
+        console.log(getReply);
+    }
+
+    const postReplyComment = () => {
+        dispatch(postReply(postReply));
+    }
+
     const currentComments = comments.map((image, i) => {
         return (
             <div key={i}>
                 <div>
                     {image.comment}
+                    <div onClick={() => enableReplyComment(index, i, false)}>{image.enableReply ? 'x': 'Reply'}</div>
+                    {image.enableReply ? <div><input type="input" onChange={(event) => getReplyComment(event.target.value)}/><button onClick={postReplyComment}>Post</button></div> : <div></div>} 
                 </div>
 
                 <div className="like-button" onClick={() => checkLikeComment(index, i)}>

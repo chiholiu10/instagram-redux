@@ -15,7 +15,8 @@ export const requestData = url => async dispatch => {
           return {
             ...item, 
             toggle: false,
-            comments: []
+            comments: [],
+            enableReplyComment: false
           }
         }),
         isError: false,

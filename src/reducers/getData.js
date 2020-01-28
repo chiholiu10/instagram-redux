@@ -7,10 +7,9 @@ const initialState = {
     errorMsg: "",
     imageLike: false,
     comments:[],
-    likeComment: false
+    likeComment: false,
+    enableReply: false
 };
-
-let id = 0;
 
 export const getImageData = (state = initialState, action) => {
     switch (action.type) {
@@ -45,7 +44,7 @@ export const getImageData = (state = initialState, action) => {
                 imageData: state.imageData.map(text => text.id === action.id ?
                     {   
                         ...text, 
-                        comments: [...text.comments, {comments: action.newComment, likeComment: text.toggle }]
+                        comments: [...text.comments, {comment: action.newComment, likeComment: text.toggle, enableReply: false }]
                     } : text
                 ) 
             }
@@ -61,10 +60,52 @@ export const getImageData = (state = initialState, action) => {
                         {   
                             ...newComment, 
                                 comments: newComment.comment,
-                                likeComment: !newComment.likeComment } : newComment
+                                likeComment: !newComment.likeComment 
+                        } : newComment
                     )
                     } : text
                 ) 
+            }
+        }
+
+        case types.OPEN_INPUT_COMMENT: {
+            return {
+                ...state,
+                imageData: state.imageData.map((text, index) => index == action.generalIndex ?
+                    {   
+                        ...text, 
+                        enableComment: true,
+                    } : {
+                        ...text,
+                        enableComment: false
+                    }
+                ) 
+            }
+        }
+
+        case types.ENABLE_REPLY: {
+            console.log('enable reply')
+            return {
+                ...state,
+                imageData: state.imageData.map((text, index) => index == action.generalIndex ?
+                    {   
+                        ...text, 
+                        enableReply: true,
+                        comments: text.comments.map((newComment, index) => index == action.commentIndex ?
+                        {   
+                            ...newComment, 
+                                enableReply: !newComment.enableReply
+                        } : {
+                            ...newComment,
+                            enableReply: false
+                        }
+                    )
+                    } : {
+                        ...text,
+                        enableReply: false
+                    }
+                ) 
+
             }
         }
 
