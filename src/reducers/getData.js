@@ -8,7 +8,7 @@ const initialState = {
     imageLike: false,
     comments:[],
     likeComment: false,
-    enableReply: false
+    enableComment: false
 };
 
 export const getImageData = (state = initialState, action) => {
@@ -69,12 +69,13 @@ export const getImageData = (state = initialState, action) => {
         }
 
         case types.OPEN_INPUT_COMMENT: {
+            console.log('open input comments');
             return {
                 ...state,
-                imageData: state.imageData.map((text, index) => index == action.generalIndex ?
+                imageData: state.imageData.map((text, index) => index == action.currentIndex ?
                     {   
                         ...text, 
-                        enableComment: true,
+                        enableComment: !text.enableComment,
                     } : {
                         ...text,
                         enableComment: false
@@ -84,13 +85,13 @@ export const getImageData = (state = initialState, action) => {
         }
 
         case types.ENABLE_REPLY: {
-            console.log('enable reply')
+            console.log('enable reply');
             return {
                 ...state,
                 imageData: state.imageData.map((text, index) => index == action.generalIndex ?
                     {   
                         ...text, 
-                        enableReply: true,
+                        enableComment: true,
                         comments: text.comments.map((newComment, index) => index == action.commentIndex ?
                         {   
                             ...newComment, 
@@ -102,7 +103,7 @@ export const getImageData = (state = initialState, action) => {
                     )
                     } : {
                         ...text,
-                        enableReply: false
+                        enableComment: false
                     }
                 ) 
 

@@ -7,7 +7,7 @@ import { InfiniteScroll } from 'react-simple-infinite-scroll';
 import PostComment from './PostComment';
 import CommentSection from './CommentSection';
 
-const Images = ({ images, likePhoto }) => {
+const Images = ({ images, likePhoto, openInputComment }) => {
     // const url = 'https://jsonplaceholder.typicode.com/photos';
     const url = 'https://api.myjson.com/bins/mofjy';
     const dispatch = useDispatch();
@@ -29,6 +29,7 @@ const Images = ({ images, likePhoto }) => {
                     <i className={image.imageLike ? 'press' : ''} ></i>
                     <span className={image.imageLike ? 'press' : ''} >liked!</span>
                 </div>
+
                 <div onClick={() => openInputComment(index)}>Active Post Input</div>
  
                 <CommentSection id={image.id} comments={image.comments} index={index} /> 

@@ -43,11 +43,11 @@ export const postReply = (replyText) => ({
 export const openInputComment = (currentIndex) => ({
     type: types.OPEN_INPUT_COMMENT,
     currentIndex
-})
+});
 
-export const editCommentPhoto = () => {
+export const editCommentPhoto = () => ({
     
-}
+})
 
 export const removeCommentPhoto = () => {
     

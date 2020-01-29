@@ -26,12 +26,13 @@ const CommentSection = ({ index, comments }) => {
     }
 
     const currentComments = comments.map((image, i) => {
+        console.log(image)
         return (
             <div key={i}>
                 <div>
                     {image.comment}
                     <div onClick={() => enableReplyComment(index, i, false)}>{image.enableReply ? 'x': 'Reply'}</div>
-                    {image.enableReply ? <div><input type="input" onChange={(event) => getReplyComment(event.target.value)}/><button onClick={postReplyComment}>Post</button></div> : <div></div>} 
+                    {image.enableReply.enablingReply ? <div><input type="input" onChange={(event) => getReplyComment(event.target.value)}/><button onClick={postReplyComment}>Post</button></div> : <div></div>} 
                 </div>
 
                 <div className="like-button" onClick={() => checkLikeComment(index, i)}>
