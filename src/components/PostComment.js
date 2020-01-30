@@ -2,8 +2,7 @@ import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { commentPhoto, postReply } from '../actions/index';
 
-const PostComment = ({ id, commentPhoto, checkComment }) => {
-    console.log(checkComment);
+const PostComment = ({ id, commentPhoto, checkComment, index }) => {
     const [commentValue, setCommentValue] = useState('');
     const [idValue, setIdValue] = useState('');
 
@@ -14,11 +13,10 @@ const PostComment = ({ id, commentPhoto, checkComment }) => {
     }
 
     const handleSubmit = () => {
-        console.log(checkComment);
         if(checkComment) {
             commentPhoto(idValue, commentValue);
         } else {
-            postReply(commentValue);
+            postReply(idValue, commentValue);
         }
         setCommentValue('');
         setIdValue('');
@@ -33,7 +31,8 @@ const PostComment = ({ id, commentPhoto, checkComment }) => {
 }
 
 const mapDispatchToProps = dispatch => ({
-    commentPhoto: (id, text) => dispatch(commentPhoto(id, text))
+    commentPhoto: (id, text) => dispatch(commentPhoto(id, text)),
+    postReply: (id, text) => dispatch(postReply(id, text))
 });
 
 const mapStateToProps = state => {

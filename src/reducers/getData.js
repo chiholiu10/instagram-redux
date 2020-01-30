@@ -52,6 +52,7 @@ export const getImageData = (state = initialState, action) => {
         }
 
         case types.TOGGLE_LIKE_COMMENT: {
+            console.log(action.generalIndex);
             return {
                 ...state,
                 imageData: state.imageData.map((text, index) => index == action.generalIndex ?
@@ -115,7 +116,27 @@ export const getImageData = (state = initialState, action) => {
             console.log('toggle input');
             return {
                 ...state,
-                enableToggleComment: action.inputToggle
+                imageData: state.imageData.map((text, index) => index == action.generalIndex ?
+                    {   
+                        ...text, 
+                        enableToggleComment: action.inputToggle,
+                        comments: text.comments.map((newComment, index) => index == action.index ?
+                        {   
+                            ...newComment, 
+                                comments: [...newComment.comments, {comment: action.replyText, likeComment: text.toggle, enableReply: false }],
+                                enableReply: !newComment.enableReply
+                        } : {
+                            ...newComment,
+                            enableReply: false
+                        }
+                    )
+                    } : {
+                        ...text,
+                        enableToggleComment: false
+                    }
+                ) 
+
+              
             }
         }
 

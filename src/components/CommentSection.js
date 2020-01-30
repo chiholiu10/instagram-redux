@@ -12,7 +12,7 @@ const CommentSection = ({ index, comments, getEnableReply }) => {
  
     const enableReplyComment = (generalIndex, nestedCommentIndex, currentEnableReply) => {
         dispatch(enableReply(generalIndex, nestedCommentIndex, getEnableReply));
-        getEnableReply(currentEnableReply)
+        getEnableReply(currentEnableReply, nestedCommentIndex)
     }
 
     const currentComments = comments.map((image, i) => {

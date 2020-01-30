@@ -36,8 +36,9 @@ export const enableReply = (generalIndex, commentIndex, enablingReply) => ({
     enablingReply
 });
 
-export const postReply = (replyText) => ({
+export const postReply = (generalIndex, replyText) => ({
     type: types.POST_REPLY,
+    generalIndex,
     replyText
 });
 

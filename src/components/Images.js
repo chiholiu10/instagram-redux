@@ -16,9 +16,9 @@ const Images = ({ images, likePhoto, openInputComment }) => {
         dispatch(requestData(url));
     }, [dispatch]); 
 
-    const getEnableReply = data => {
+    const getEnableReply = (toggleInputCheck, index) => {
         console.log('getReply dispatch');
-        dispatch(toggleInput(data));
+        dispatch(toggleInput(toggleInputCheck, index));
     }
 
     const getImages = images.imageData.map((image, index) => {
