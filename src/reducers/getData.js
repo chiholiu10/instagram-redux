@@ -8,7 +8,8 @@ const initialState = {
     imageLike: false,
     comments:[],
     likeComment: false,
-    enableComment: false
+    enableComment: false,
+    enableToggleComment: true
 };
 
 export const getImageData = (state = initialState, action) => {
@@ -107,6 +108,14 @@ export const getImageData = (state = initialState, action) => {
                     }
                 ) 
 
+            }
+        }
+
+        case types.TOGGLE_INPUT: {
+            console.log('toggle input');
+            return {
+                ...state,
+                enableToggleComment: action.inputToggle
             }
         }
 

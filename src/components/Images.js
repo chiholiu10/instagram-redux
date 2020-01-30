@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { requestData } from './GetData';
 import { connect } from 'react-redux';
-import { likePhoto, openInputComment } from '../actions/index';
+import { likePhoto, openInputComment, toggleInput } from '../actions/index';
 import { InfiniteScroll } from 'react-simple-infinite-scroll';
 import PostComment from './PostComment';
 import CommentSection from './CommentSection';
@@ -15,6 +15,11 @@ const Images = ({ images, likePhoto, openInputComment }) => {
     useEffect(() => {
         dispatch(requestData(url));
     }, [dispatch]); 
+
+    const getEnableReply = data => {
+        console.log('getReply dispatch');
+        dispatch(toggleInput(data));
+    }
 
     const getImages = images.imageData.map((image, index) => {
         return (
@@ -32,9 +37,9 @@ const Images = ({ images, likePhoto, openInputComment }) => {
 
                 <div onClick={() => openInputComment(index)}>Active Post Input</div>
  
-                <CommentSection id={image.id} comments={image.comments} index={index} /> 
+                <CommentSection id={image.id} comments={image.comments} index={index} getEnableReply={getEnableReply}/> 
 
-                {image.enableComment ? <PostComment id={image.id}/> : <div></div>} 
+                {image.enableComment ? <PostComment id={image.id} getEnableReply={getEnableReply}/> : <div></div>} 
                 
             </div>
             </InfiniteScroll>

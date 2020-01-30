@@ -5,7 +5,8 @@ export const types = {
     REPLY_COMMENT: 'REPLY_COMMENT',
     ENABLE_REPLY: 'ENABLE_REPLY',
     POST_REPLY: 'POST_REPLY',
-    OPEN_INPUT_COMMENT: 'OPEN_INPUT_COMMENT'
+    OPEN_INPUT_COMMENT: 'OPEN_INPUT_COMMENT',
+    TOGGLE_INPUT: 'TOGGLE_INPUT'
 }
 
 export const addPhoto = () => {
@@ -58,6 +59,11 @@ export const removeCommentPhoto = () => {
 export const likeCommentPhoto = () => {
     
 }
+
+export const toggleInput = (inputToggle) => ({
+    type: types.TOGGLE_INPUT,
+    inputToggle
+})
 
 
 
