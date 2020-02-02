@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { commentPhoto, postReply } from '../actions/index';
 
-const PostComment = ({ id, commentPhoto, checkComment, index }) => {
+const PostComment = ({ id, commentPhoto, checkComment, showInput }) => {
     const [commentValue, setCommentValue] = useState('');
     const [idValue, setIdValue] = useState('');
 
@@ -14,20 +14,30 @@ const PostComment = ({ id, commentPhoto, checkComment, index }) => {
 
     const handleSubmit = () => {
         if(checkComment) {
-            commentPhoto(idValue, commentValue);
+            commentPhoto(idValue, commentValue, checkComment);
         } else {
-            postReply(idValue, commentValue);
+            commentPhoto(idValue, commentValue, checkComment);
         }
+        
         setCommentValue('');
         setIdValue('');
     }
 
-    return (
-        <div>
-            <input type="text" value={ commentValue } onChange={(event) => handleCommentChange(id, event)}/>
-            <button type="submit" onClick={handleSubmit}>Post</button>
-        </div>
-    )
+    if(showInput) {
+        return (
+            <div>
+                <input type="text" value={ commentValue } onChange={(event) => handleCommentChange(id, event)}/>
+                <button type="submit" onClick={handleSubmit}>Post</button>
+            </div>
+        )
+    } else {
+        return (
+            <div>
+            </div>
+        )
+    }
+
+    
 }
 
 const mapDispatchToProps = dispatch => ({

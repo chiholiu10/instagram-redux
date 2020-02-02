@@ -20,7 +20,7 @@ const CommentSection = ({ index, comments, getEnableReply }) => {
             <div key={i}>
                 <div>
                     {image.comment}
-                    <div onClick={() => enableReplyComment(index, i, image.enableReply)}>{image.enableReply ? 'x': 'Reply'}</div>
+                    <div onClick={() => enableReplyComment(index, i, image.enableReply)}>{image.enableReply ? 'x': 'Click here to reply'}</div>
                 </div>
 
                 <div className="like-button" onClick={() => checkLikeComment(index, i)}>

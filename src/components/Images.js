@@ -17,7 +17,6 @@ const Images = ({ images, likePhoto, openInputComment }) => {
     }, [dispatch]); 
 
     const getEnableReply = (toggleInputCheck, index) => {
-        console.log('getReply dispatch');
         dispatch(toggleInput(toggleInputCheck, index));
     }
 
@@ -35,11 +34,11 @@ const Images = ({ images, likePhoto, openInputComment }) => {
                     <span className={image.imageLike ? 'press' : ''} >liked!</span>
                 </div>
 
-                <div onClick={() => openInputComment(index)}>Active Post Input</div>
+                <div onClick={() => openInputComment(index)}>Click here to open input comment field</div>
  
                 <CommentSection id={image.id} comments={image.comments} index={index} getEnableReply={getEnableReply}/> 
 
-                {image.enableComment ? <PostComment id={image.id} getEnableReply={getEnableReply}/> : <div></div>} 
+                <PostComment id={image.id} getEnableReply={getEnableReply} showInput={image.enableComment} />
                 
             </div>
             </InfiniteScroll>

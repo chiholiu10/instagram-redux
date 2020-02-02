@@ -17,10 +17,11 @@ export const likePhoto = (index) => ({
     index
 });
 
-export const commentPhoto = (id, newComment) => ({
+export const commentPhoto = (id, newComment, typeComment) => ({
     type: types.ADD_COMMENT,
     id,
-    newComment
+    newComment,
+    typeComment
 });
 
 export const likeComment = (generalIndex, commentIndex) => ({

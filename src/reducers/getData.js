@@ -39,15 +39,15 @@ export const getImageData = (state = initialState, action) => {
             };
         }
         case types.ADD_COMMENT: {
-            console.log('add comment');
+            console.log(state);
             return {
                 ...state,
                 imageData: state.imageData.map(text => text.id === action.id ?
                     {   
                         ...text, 
                         comments: [...text.comments, {comment: action.newComment, likeComment: text.toggle, enableReply: false }]
-                    } : text
-                ) 
+                        } : text
+                    )
             }
         }
 
@@ -113,7 +113,7 @@ export const getImageData = (state = initialState, action) => {
         }
 
         case types.TOGGLE_INPUT: {
-            console.log('toggle input');
+            console.log(state);
             return {
                 ...state,
                 imageData: state.imageData.map((text, index) => index == action.generalIndex ?
@@ -123,7 +123,7 @@ export const getImageData = (state = initialState, action) => {
                         comments: text.comments.map((newComment, index) => index == action.index ?
                         {   
                             ...newComment, 
-                                comments: [...newComment.comments, {comment: action.replyText, likeComment: text.toggle, enableReply: false }],
+                                replyComments: [...newComment.replyComments, {comment: action.replyText, likeComment: text.toggle, enableReply: false }],
                                 enableReply: !newComment.enableReply
                         } : {
                             ...newComment,
