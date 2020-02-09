@@ -17,6 +17,7 @@ export const likePhoto = (index) => ({
 });
 
 export const addComment = (id, newComment, toggle) => {
+    console.log(newComment)
     return {
         type: types.ADD_COMMENT,
         id,

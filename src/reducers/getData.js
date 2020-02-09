@@ -40,27 +40,31 @@ export const getImageData = (state = initialState, action) => {
         }
 
         case types.ADD_COMMENT: {
+            console.log(state.imageData);
             return {
                 ...state,
-                imageData: state.imageData.map(image => image.id === action.id ?
+                imageData: state.imageData.map(text => text.id === action.id ?
                     {   
-                        ...image, 
-                        comments: [...image.comments, {comment: action.newComment, likeComment: image.toggle, enableReply: false, replyComments: [{}] }]
-                        } : image
+                        ...text, 
+                        comments: [...text.comments, {comment: action.newComment, likeComment: text.toggle, enableReply: false, replyComments: [{}] }]
+                        } : text
                     )
             }
         }
 
         case types.REPLY_COMMENT: {
+            console.log(state.imageData[action.generalIndex]);
             return {
                 ...state,
                 enableToggleComment: true,
                 imageData: state.imageData.map(image => image.id === action.majorIndex ?
                     {   
                         ...image, 
-                        comments: image.comments.map((comment, index) => {
-                            console.log(comment, index);
-                        })
+                        comments: {
+                            [action.commentIndex]: {
+                                replyComments: [...image.comments, {comment: action.newComment, likeComment: image.toggle, enableReply: false, replyComments: [{}] }]
+                            }
+                        }
                         } : image
                     )
             }

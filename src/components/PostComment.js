@@ -12,11 +12,11 @@ const PostComment = ({ id, addComment, replyComment, checkComment, showInput, ma
         setIdValue(id);
         setCommentValue(event.target.value);
         setToggle(checkComment);
-        console.log(toggle, checkComment);
+
     }
 
     const addNewComment = () => {
-
+        console.log(commentValue);
         addComment(idValue, commentValue, toggle);
         setCommentValue('');
         setIdValue('');
@@ -31,7 +31,7 @@ const PostComment = ({ id, addComment, replyComment, checkComment, showInput, ma
     if(showInput) {
         return (
             <div>
-                <input type="text" value={ commentValue } onChange={(event) => handleCommentChange(id, event)}/>
+                <input type="text" value={ commentValue } onChange={(event) => handleCommentChange(id, event, commentValue)}/>
                 <button type="submit" onClick={toggle ? addNewComment : replyToComment}>Post</button>
             </div>
         )
