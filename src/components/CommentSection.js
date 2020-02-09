@@ -11,7 +11,6 @@ const CommentSection = ({ index, comments, getEnableReply }) => {
     }
  
     const enableReplyComment = (generalIndex, nestedCommentIndex, currentEnableReply) => {
-        console.log(generalIndex, nestedCommentIndex, currentEnableReply)
         dispatch(enableReply(generalIndex, nestedCommentIndex, currentEnableReply));
         getEnableReply(currentEnableReply, nestedCommentIndex, currentEnableReply)
     }

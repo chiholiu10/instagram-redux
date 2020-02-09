@@ -12,12 +12,11 @@ const PostComment = ({ id, addComment, replyComment, checkComment, showInput, ma
         setIdValue(id);
         setCommentValue(event.target.value);
         setToggle(checkComment);
-
     }
 
     const addNewComment = () => {
-        console.log(commentValue);
-        addComment(idValue, commentValue, toggle);
+        addComment(idValue, commentValue);
+        console.log(commentValue)
         setCommentValue('');
         setIdValue('');
     }
@@ -46,12 +45,11 @@ const PostComment = ({ id, addComment, replyComment, checkComment, showInput, ma
 }
 
 const mapDispatchToProps = dispatch => ({
-    addComment: (id, text, toggle) => dispatch(addComment(id, text. toggle)),
+    addComment: (id, text) => dispatch(addComment(id, text)),
     replyComment: (id, text, toggle, majorIndex, minorIndex) => dispatch(replyComment(id, text, toggle, majorIndex, minorIndex))
 });
 
 const mapStateToProps = state => {
-    // console.log(state);
     return {
         checkComment: state.imageData.enableToggleComment,
         majorIndex: state.imageData.majorIndex,

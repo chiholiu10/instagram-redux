@@ -16,13 +16,12 @@ export const likePhoto = (index) => ({
     index
 });
 
-export const addComment = (id, newComment, toggle) => {
-    console.log(newComment)
+export const addComment = (id, newComment) => {
+    console.log(newComment);
     return {
         type: types.ADD_COMMENT,
         id,
-        newComment,
-        toggle
+        newComment
     }
 }
 

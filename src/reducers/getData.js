@@ -40,7 +40,6 @@ export const getImageData = (state = initialState, action) => {
         }
 
         case types.ADD_COMMENT: {
-            console.log(state.imageData);
             return {
                 ...state,
                 imageData: state.imageData.map(text => text.id === action.id ?
@@ -53,7 +52,6 @@ export const getImageData = (state = initialState, action) => {
         }
 
         case types.REPLY_COMMENT: {
-            console.log(state.imageData[action.generalIndex]);
             return {
                 ...state,
                 enableToggleComment: true,
@@ -104,7 +102,6 @@ export const getImageData = (state = initialState, action) => {
         }
 
         case types.ENABLE_REPLY: {
-            console.log('enableReply' + action.generalIndex, action.commentIndex, action.enablingReply);
             return {
                 ...state,
                 enableToggleComment: action.enablingReply,

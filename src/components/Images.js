@@ -58,8 +58,11 @@ const mapDispatchToProps = dispatch => ({
     openInputComment: id => dispatch(openInputComment(id))
 });
 
-const mapStateToProps = state => ({
-    images: state.imageData
-})
+const mapStateToProps = state => {
+    console.log(state.imageData);
+    return {
+        images: state.imageData
+    }
+}
 
 export default connect(mapStateToProps, mapDispatchToProps)(Images);
