@@ -11,8 +11,9 @@ const CommentSection = ({ index, comments, getEnableReply }) => {
     }
  
     const enableReplyComment = (generalIndex, nestedCommentIndex, currentEnableReply) => {
-        dispatch(enableReply(generalIndex, nestedCommentIndex, getEnableReply));
-        getEnableReply(currentEnableReply, nestedCommentIndex)
+        console.log(generalIndex, nestedCommentIndex, currentEnableReply)
+        dispatch(enableReply(generalIndex, nestedCommentIndex, currentEnableReply));
+        getEnableReply(currentEnableReply, nestedCommentIndex, currentEnableReply)
     }
 
     const currentComments = comments.map((image, i) => {
@@ -37,10 +38,6 @@ const CommentSection = ({ index, comments, getEnableReply }) => {
         </div>
     )
 }
-
-// const mapDispatchToProps = dispatch => ({
-//     likeComment: (id, text) => dispatch(likeComment(id, text))
-// });
 
 const mapStateToProps = state => ({
     images: state.imageData

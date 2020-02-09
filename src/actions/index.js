@@ -4,7 +4,6 @@ export const types = {
     TOGGLE_LIKE_COMMENT: 'TOGGLE_LIKE_COMMENT',
     REPLY_COMMENT: 'REPLY_COMMENT',
     ENABLE_REPLY: 'ENABLE_REPLY',
-    POST_REPLY: 'POST_REPLY',
     OPEN_INPUT_COMMENT: 'OPEN_INPUT_COMMENT',
     TOGGLE_INPUT: 'TOGGLE_INPUT'
 }
@@ -17,36 +16,49 @@ export const likePhoto = (index) => ({
     index
 });
 
-export const commentPhoto = (id, newComment, typeComment) => ({
-    type: types.ADD_COMMENT,
-    id,
-    newComment,
-    typeComment
-});
+export const addComment = (id, newComment, toggle) => {
+    return {
+        type: types.ADD_COMMENT,
+        id,
+        newComment,
+        toggle
+    }
+}
 
-export const likeComment = (generalIndex, commentIndex) => ({
-    type: types.TOGGLE_LIKE_COMMENT,
-    generalIndex,
-    commentIndex
-});
+export const replyComment = (generalIndex, replyText, toggle, majorIndex, minorIndex) => {
+    return {
+        type: types.REPLY_COMMENT,
+        generalIndex,
+        replyText,
+        toggle,
+        majorIndex,
+        minorIndex
+    }
+}
 
-export const enableReply = (generalIndex, commentIndex, enablingReply) => ({
-    type: types.ENABLE_REPLY,
-    generalIndex,
-    commentIndex,
-    enablingReply
-});
+export const likeComment = (generalIndex, commentIndex) => {
+    return {
+        type: types.TOGGLE_LIKE_COMMENT,
+        generalIndex,
+        commentIndex
+    }
+};
 
-export const postReply = (generalIndex, replyText) => ({
-    type: types.POST_REPLY,
-    generalIndex,
-    replyText
-});
+export const enableReply = (generalIndex, commentIndex, enablingReply) => {
+    return {
+        type: types.ENABLE_REPLY,
+        generalIndex,
+        commentIndex,
+        enablingReply,
+    }
+}
 
-export const openInputComment = (currentIndex) => ({
-    type: types.OPEN_INPUT_COMMENT,
-    currentIndex
-});
+export const openInputComment = (currentIndex) => {
+    return {
+        type: types.OPEN_INPUT_COMMENT,
+        currentIndex
+    }
+}
 
 export const editCommentPhoto = () => ({
     
@@ -66,7 +78,3 @@ export const toggleInput = (inputToggle) => ({
     type: types.TOGGLE_INPUT,
     inputToggle
 })
-
-
-
-
