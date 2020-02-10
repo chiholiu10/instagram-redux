@@ -16,7 +16,6 @@ const PostComment = ({ id, addComment, replyComment, checkComment, showInput, ma
 
     const addNewComment = () => {
         addComment(idValue, commentValue);
-        console.log(commentValue)
         setCommentValue('');
         setIdValue('');
     }
@@ -40,8 +39,6 @@ const PostComment = ({ id, addComment, replyComment, checkComment, showInput, ma
             </div>
         )
     }
-
-    
 }
 
 const mapDispatchToProps = dispatch => ({

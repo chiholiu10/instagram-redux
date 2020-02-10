@@ -36,7 +36,7 @@ const Images = ({ images, likePhoto, openInputComment }) => {
 
                 <div onClick={() => openInputComment(index)}>Click here to open input comment field</div>
  
-                <CommentSection id={image.id} comments={image.comments} index={index} getEnableReply={getEnableReply}/> 
+                <CommentSection id={image.id} comments={image.comments} replies={image.replyComments} index={index} getEnableReply={getEnableReply}/> 
 
                 <PostComment id={image.id} getEnableReply={getEnableReply} showInput={image.enableComment} />
                 
@@ -60,6 +60,7 @@ const mapDispatchToProps = dispatch => ({
 
 const mapStateToProps = state => {
     console.log(state.imageData);
+
     return {
         images: state.imageData
     }

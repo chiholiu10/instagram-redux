@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { likeComment, enableReply } from '../actions/index';
 import { useDispatch } from 'react-redux';
+import ReplyComment from './ReplyComment';
 
 const CommentSection = ({ index, comments, getEnableReply }) => {
     const dispatch = useDispatch();
@@ -15,7 +16,7 @@ const CommentSection = ({ index, comments, getEnableReply }) => {
         getEnableReply(currentEnableReply, nestedCommentIndex, currentEnableReply)
     }
 
-    const currentComments = comments.map((image, i) => {
+    const currentComments = comments.map(( image, i ) => {
         return (
             <div key={i}>
                 <div>
@@ -27,6 +28,8 @@ const CommentSection = ({ index, comments, getEnableReply }) => {
                     <i className={image.likeComment ? 'press' : ''} ></i>
                     <span className={image.likeComment ? 'press' : ''} ></span>
                 </div>
+
+                <ReplyComment />
             </div>
         )
     })

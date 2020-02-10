@@ -6,7 +6,6 @@ const initialState = {
     isError: false,
     errorMsg: "",
     imageLike: false,
-    comments:[],
     likeComment: false,
     enableComment: false,
     enableToggleComment: true
@@ -45,7 +44,7 @@ export const getImageData = (state = initialState, action) => {
                 imageData: state.imageData.map(text => text.id === action.id ?
                     {   
                         ...text, 
-                        comments: [...text.comments, {comment: action.newComment, likeComment: text.toggle, enableReply: false, replyComments: [{}] }]
+                        comments: [...text.comments, { comment: action.newComment, likeComment: text.toggle, enableReply: false, replyComments: [] }]
                         } : text
                     )
             }
@@ -55,12 +54,12 @@ export const getImageData = (state = initialState, action) => {
             return {
                 ...state,
                 enableToggleComment: true,
-                imageData: state.imageData.map(image => image.id === action.majorIndex ?
+                imageData: state.imageData.map(image => image.id === action.generalIndex ?
                     {   
                         ...image, 
                         comments: {
-                            [action.commentIndex]: {
-                                replyComments: [...image.comments, {comment: action.newComment, likeComment: image.toggle, enableReply: false, replyComments: [{}] }]
+                            [action.minorIndex]: {
+                                replyComments: [...image.comments[action.minorIndex].replyComments, { comment: action.replyText, likeComment: image.toggle, enableReply: false }]
                             }
                         }
                         } : image
@@ -105,7 +104,7 @@ export const getImageData = (state = initialState, action) => {
             return {
                 ...state,
                 enableToggleComment: action.enablingReply,
-                majorInxex: action.generalIndex,
+                majorIndex: action.generalIndex,
                 minorIndex: action.commentIndex,
                 imageData: state.imageData.map((text, index) => index == action.generalIndex ?
                     {   
