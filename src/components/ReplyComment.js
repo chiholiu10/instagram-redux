@@ -3,17 +3,21 @@ import { connect } from 'react-redux';
 
 const ReplyComment = ({ replies }) => {
     console.log(replies);
-    // const currentReplies = replies.map((reply, i) => {
-    //     return (
-    //         <div key={i}>
-    //             {reply}
-    //         </div>
-    //     )
-    // });
+    const currentReplies = replies.map((reply, i) => {
+        return (
+            <div key={i}>
+                {reply.comment}
+            </div>
+        )
+    });
+
+//     comment: "dsfdfs"
+// likeComment: undefined
+// enableReply: false
 
     return (
         <div>
-            {/* { currentReplies } */}
+            { currentReplies }
         </div>
     )
 }

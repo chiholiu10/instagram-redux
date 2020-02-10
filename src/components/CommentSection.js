@@ -29,7 +29,7 @@ const CommentSection = ({ index, comments, getEnableReply }) => {
                     <span className={image.likeComment ? 'press' : ''} ></span>
                 </div>
 
-                <ReplyComment />
+                <ReplyComment replies={image.replyComments}/>
             </div>
         )
     })

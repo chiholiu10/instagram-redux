@@ -51,18 +51,18 @@ export const getImageData = (state = initialState, action) => {
         }
 
         case types.REPLY_COMMENT: {
-            console.log(action.generalIndex, action.majorIndex, action.minorIndex);
             return {
                 ...state,
                 enableToggleComment: true,
-                imageData: state.imageData.map(image =>
-                    image.id === action.generalIndex
-                    ? {
+                imageData: state.imageData.map(image => image.id === action.generalIndex ? 
+                    {
                         ...image,
                         comments: image.comments.map((comment, i) => i === action.minorIndex ? 
                             {
                                 ...comment,
-                                replyComments: [...comment.replyComments, { comment: action.replyText, likeComment: comment.toggle, enableReply: false } ]
+                      
+                                replyComments: [...comment.replyComments, { comment: action.replyText, likeComment: comment.toggle, enableReply: false }],
+                                enableReply: false,
                             } : comment
                         )
                     } : image
