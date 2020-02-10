@@ -25,13 +25,12 @@ export const addComment = (id, newComment) => {
     }
 }
 
-export const replyComment = (generalIndex, replyText, toggle, majorIndex, minorIndex) => {
+export const replyComment = (generalIndex, replyText, toggle, minorIndex) => {
     return {
         type: types.REPLY_COMMENT,
         generalIndex,
         replyText,
         toggle,
-        majorIndex,
         minorIndex
     }
 }
