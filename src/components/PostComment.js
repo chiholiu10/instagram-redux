@@ -15,6 +15,7 @@ const PostComment = ({ id, addComment, replyComment, checkComment, showInput, ma
     }
 
     const addNewComment = () => {
+        if(commentValue.length < 1) return;
         addComment(idValue, commentValue);
         setCommentValue('');
         setIdValue('');
@@ -28,9 +29,9 @@ const PostComment = ({ id, addComment, replyComment, checkComment, showInput, ma
 
     if(showInput) {
         return (
-            <div>
-                <input type="text" value={ commentValue } onChange={(event) => handleCommentChange(id, event, commentValue)}/>
-                <button type="submit" onClick={toggle ? addNewComment : replyToComment}>Post</button>
+            <div className="input-field-block">
+                <input className="input-field" type="text" value={ commentValue } onChange={(event) => handleCommentChange(id, event, commentValue)} placeholder="Add to comment"/>
+                <div className="input-field-submit-button" type="submit" onClick={toggle ? addNewComment : replyToComment}>Post</div>
             </div>
         )
     } else {

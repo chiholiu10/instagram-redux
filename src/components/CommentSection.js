@@ -19,15 +19,26 @@ const CommentSection = ({ index, comments, getEnableReply }) => {
     const currentComments = comments.map(( image, i ) => {
         return (
             <div key={i}>
-                <div>
-                    {image.comment}
-                    <div onClick={() => enableReplyComment(index, i, image.enableReply)}>{image.enableReply ? 'x': 'Click here to reply'}</div>
-                </div>
+                <div className="comment-block">
+                    <div className="comment-block-top">
+                        <div className="comment-parent">
+                            {image.comment}
+                        </div>
+                        
+                        <div>
+                            <div className="like-button-parent" onClick={() => checkLikeComment(index, i)}>
+                                <i className={image.likeComment ? 'like-button-child press' : 'like-button-child'} ></i>
+                                <span className={image.likeComment ? 'press' : ''} ></span>
+                            </div>
+                        </div>
+                    </div>
+             
+                    <div onClick={() => enableReplyComment(index, i, image.enableReply)} className={image.enableReply ? 'reply_text reply_active' : 'reply_text eply_default'}>reply</div>
 
-                <div className="like-button" onClick={() => checkLikeComment(index, i)}>
-                    <i className={image.likeComment ? 'press' : ''} ></i>
-                    <span className={image.likeComment ? 'press' : ''} ></span>
+
+                    
                 </div>
+                
 
                 <ReplyComment replies={image.replyComments}/>
             </div>

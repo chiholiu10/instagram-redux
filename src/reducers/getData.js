@@ -88,6 +88,25 @@ export const getImageData = (state = initialState, action) => {
             }
         }
 
+
+        case types.TOGGLE_LIKE_REPLY: {
+            return {
+                ...state,
+                imageData: state.imageData.map((text, index) => index == action.generalIndex ?
+                    {   
+                        ...text, 
+                        comments: text.comments.map((newComment, index) => index == action.commentIndex ?
+                        {   
+                            ...newComment, 
+                                comments: newComment.comment,
+                                likeComment: !newComment.likeComment 
+                        } : newComment
+                    )
+                    } : text
+                ) 
+            }
+        }
+
         case types.OPEN_INPUT_COMMENT: {
             return {
                 ...state,
