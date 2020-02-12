@@ -32,7 +32,7 @@ const ReplyComment = ({ index, commentIndex, replies, dispatch, getEnableReply }
                         </div>
                     </div>
                 </div>
-                {/* <div onClick={() => enableReplyComment(index, i, reply.enableReply)} className={reply.enableReply ? 'reply_text reply_active' : 'reply_text eply_default'}>reply</div> */}
+                <div onClick={() => enableReplyComment(index, i, reply.enableReply)} className={reply.enableReply ? 'reply_text reply_active' : 'reply_text reply_default'}>reply</div>
             </div>
         )
     });
