@@ -26,9 +26,6 @@ body {
         align-items: center;
       }
     }
-    // .open-input-field {
-    //   border: 1px solid red;
-    // }
     .reply-button {
 
     }
@@ -57,7 +54,6 @@ body {
       position: relative;
       &-image {
 
-        border: 1px solid red;
       }
     }
     .reply {
@@ -110,7 +106,7 @@ body {
         display: flex;
         width: calc(100% - 50px);
         text-align: left;
-        padding-left: 35px;
+        padding-left: 60px;
       }
       &-block-top {
         display: flex;

@@ -5,7 +5,9 @@ export const types = {
     REPLY_COMMENT: 'REPLY_COMMENT',
     ENABLE_REPLY: 'ENABLE_REPLY',
     OPEN_INPUT_COMMENT: 'OPEN_INPUT_COMMENT',
+    TOGGLE_LIKE_REPLY: 'TOGGLE_LIKE_REPLY',
     TOGGLE_INPUT: 'TOGGLE_INPUT'
+ 
 }
 
 export const addPhoto = () => {
@@ -40,6 +42,16 @@ export const likeComment = (generalIndex, commentIndex) => {
         type: types.TOGGLE_LIKE_COMMENT,
         generalIndex,
         commentIndex
+    }
+};
+
+export const likeReply = (generalIndex, commentIndex, replyIndex) => {
+    console.log(generalIndex, commentIndex, replyIndex);
+    return {
+        type: types.TOGGLE_LIKE_REPLY,
+        generalIndex,
+        commentIndex,
+        replyIndex
     }
 };
 

@@ -34,13 +34,11 @@ const CommentSection = ({ index, comments, getEnableReply }) => {
                     </div>
              
                     <div onClick={() => enableReplyComment(index, i, image.enableReply)} className={image.enableReply ? 'reply_text reply_active' : 'reply_text eply_default'}>reply</div>
-
-
                     
                 </div>
                 
 
-                <ReplyComment replies={image.replyComments}/>
+                <ReplyComment replies={image.replyComments} index={index} commentIndex={i}/>
             </div>
         )
     })
