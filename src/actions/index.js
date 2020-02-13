@@ -6,7 +6,8 @@ export const types = {
     ENABLE_REPLY: 'ENABLE_REPLY',
     OPEN_INPUT_COMMENT: 'OPEN_INPUT_COMMENT',
     TOGGLE_LIKE_REPLY: 'TOGGLE_LIKE_REPLY',
-    TOGGLE_INPUT: 'TOGGLE_INPUT'
+    TOGGLE_INPUT: 'TOGGLE_INPUT',
+    ENABLE_REPLY_CHILD: 'ENABLE_REPLY_CHILD'
  
 }
 
@@ -61,6 +62,17 @@ export const enableReply = (generalIndex, commentIndex, enablingReply) => {
         generalIndex,
         commentIndex,
         enablingReply,
+    }
+}
+
+export const enableReplyChild = (generalIndex, commentIndex, nestedCommentIndex, enablingReply) => {
+    console.log(generalIndex, commentIndex, nestedCommentIndex, enablingReply);
+    return {
+        type: types.ENABLE_REPLY_CHILD,
+        generalIndex, 
+        commentIndex, 
+        nestedCommentIndex,
+        enablingReply
     }
 }
 

@@ -1,19 +1,20 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { likeReply, enableReply } from '../actions/index';
+import { likeReply, enableReplyChild} from '../actions/index';
 
-const ReplyComment = ({ index, commentIndex, replies, dispatch, getEnableReply }) => {
+const ReplyComment = ({ index, commentIndex, replies, dispatch }) => {
 
 
     const checkLikeReply = (generalIndex, nestedCommentIndex, replyIndex) => {
-        console.log(generalIndex, nestedCommentIndex, replyIndex);
         dispatch(likeReply(generalIndex, nestedCommentIndex, replyIndex));
     }
 
-    // const enableReplyComment = (generalIndex, nestedCommentIndex, currentEnableReply) => {
-    //     dispatch(enableReply(generalIndex, nestedCommentIndex, currentEnableReply));
-    //     getEnableReply(currentEnableReply, nestedCommentIndex, currentEnableReply)
-    // }
+    const enableReplyComment = (generalIndex, nestedCommentIndex, replyIndex, currentEnableReply) => {
+        console.log(generalIndex, nestedCommentIndex, replyIndex, currentEnableReply);
+
+        dispatch(enableReplyChild(generalIndex, nestedCommentIndex, replyIndex, currentEnableReply));
+        // getEnableReply(currentEnableReply, nestedCommentIndex, currentEnableReply)
+    }
 
     const currentReplies = replies.map((reply, i) => {
         return (
@@ -32,7 +33,8 @@ const ReplyComment = ({ index, commentIndex, replies, dispatch, getEnableReply }
                         </div>
                     </div>
                 </div>
-                <div onClick={() => enableReplyComment(index, i, reply.enableReply)} className={reply.enableReply ? 'reply_text reply_active' : 'reply_text reply_default'}>reply</div>
+
+                <div onClick={() => enableReplyComment(index, commentIndex, i, reply.enableReply)} className={reply.enableReply ? 'reply_text reply_active' : 'reply_text reply_default'}>reply</div>
             </div>
         )
     });
