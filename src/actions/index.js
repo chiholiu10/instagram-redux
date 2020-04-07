@@ -83,18 +83,13 @@ export const openInputComment = (currentIndex) => {
     }
 }
 
-export const editCommentPhoto = () => ({
-    
-})
-
-export const removeCommentPhoto = () => {
-    
+export const editCommentPhoto = () => {  
 }
 
+export const removeCommentPhoto = () => {
+}
 
-
-export const likeCommentPhoto = () => {
-    
+export const likeCommentPhoto = () => { 
 }
 
 export const toggleInput = (inputToggle) => ({
